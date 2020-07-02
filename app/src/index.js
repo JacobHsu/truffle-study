@@ -1,5 +1,6 @@
 import Web3 from "web3";
-import metaMainArtifact from "../../build/contracts/SafeMath.json";
+// import metaMainArtifact from "../../build/contracts/SafeMath.json";
+import metaMainArtifact from "../../build/contracts/SimpleOraclizeContract.json";
 
 const App = {
   web3: null,
@@ -29,8 +30,11 @@ const App = {
   },
 
   refreshLoad: async function() {
-    const { use_add } = this.meta.methods;
-    const result = await use_add(2,4).call();
+    // const { use_add } = this.meta.methods;
+    // const result = await use_add(2,4).call();
+    const { updatePrice } = this.meta.methods;
+    const result = await updatePrice().call();
+    
     console.log('result:', result)
     const balanceElement = document.getElementsByClassName("balance")[0];
     balanceElement.innerHTML = result;

@@ -24,6 +24,9 @@
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
+var HDWalletProvider = require("truffle-hdwallet-provider");
+var mnemonic  = require('./mnemonic.json')
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -72,6 +75,14 @@ module.exports = {
       // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
+      ropsten: {
+        provider: function() {
+          return new HDWalletProvider(mnemonic.words, "https://ropsten.infura.io/v3/81b24135ba2e4b03be83bd3e56bd01cf")
+        },
+        network_id: 3,
+        // gas: 6721975,
+        // gasPrice: 100000000000,
+      },
 
     // Useful for private networks
     // private: {
